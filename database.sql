@@ -1,0 +1,55 @@
+CREATE DATABASE IF NOT EXISTS tecnosoluciones
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE tecnosoluciones;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(128) NOT NULL,
+    email VARCHAR(168) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB; 
+
+CREATE TABLE IF NOT EXISTS clients (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(160) NOT NULL,
+    email VARCHAR(160) NOT NULL,
+    phone VARCHAR(40) NOT NULL,
+    company VARCHAR(160) NOT NULL,
+    address TEXT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
+) ENGINE=InnoDB; 
+
+CREATE TABLE IF NOT EXISTS projects (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    client_id INT UNSIGNED NOT NULL,
+    name VARCHAR(180) NOT NULL,
+    description TEXT NULL,
+    status VARCHAR(40) NOT NULL DEFAULT 'Planificado',
+    start_date DATE NULL,
+    end_date DATE NULL,
+    budget DECIMAL(12, 2) NOT NULL DEFAULT 0.00,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_projects_clients
+        FOREIGN KEY (client_id) REFERENCES clients(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+) ENGINE=InnoDB;
+-- al final del database.sql que ya tienes
+CREATE TABLE IF NOT EXISTS invoices (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    project_id INT UNSIGNED NOT NULL,
+    number VARCHAR(20) NOT NULL,
+    issued_at DATE NOT NULL,
+    due_at DATE NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'Pendiente',
+    notes TEXT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_invoices_projects
+        FOREIGN KEY (project_id) REFERENCES projects(id)
+        ON DELETE RESTRICT
+) ENGINE=InnoDB;

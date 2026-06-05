@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch built-in server and Debug",
+            "type": "php",
+            "request": "launch",
+            "noDebug": false,
+            "runtimeArgs": [
+                "-S",
+                "localhost:8000",
+                "-t",
+                "${workspaceFolder}/public",
+                "${workspaceFolder}/public/router.php"
+            ],
+            "cwd": "${workspaceFolder}",
+            "serverReadyAction": {
+                "action": "openExternally"
+            }
+        },
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003
+        }
+    ]
+}
