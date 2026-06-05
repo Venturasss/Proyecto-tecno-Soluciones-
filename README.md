@@ -14,5 +14,7 @@ Sistema web moderno desarrollado en PHP con arquitectura MVC para centralizar la
 - **Frontend:** HTML5, CSS3, JavaScript, componentes responsivos modernos.
 - **Base de Datos:** Estructura relacional optimizada.
 
+- Falta optimizar el panel con tipos de colores
+
 ---
 *Desarrollado como proyecto clave de fin de ciclo para portafolio profesional.*
