@@ -1,10 +1,10 @@
 <?php
 declare(strict_types = 1);
 
-const APP_NAME = 'tecnoSoluciones S.A';
-const BASE_URL = 'http://localhost:8000/';
-const DB_HOST = $_ENV['DB_HOST'] ?? '127.0.0.1';
-const DB_NAME = $_ENV['DB_NAME'] ?? 'tecnosoluciones';
-const DB_USER = $_ENV['DB_USER'] ?? 'root';
-const DB_PASS = $_ENV['DB_PASS'] ?? '';
-const DB_CHARSET = 'utf8mb4';
+define('APP_NAME', 'tecnoSoluciones S.A');
+define('BASE_URL', getenv('BASE_URL') ?: 'http://localhost:8000/');
+define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
+define('DB_NAME', getenv('DB_NAME') ?: 'tecnosoluciones');
+define('DB_USER', getenv('DB_USER') ?: 'root');
+define('DB_PASS', getenv('DB_PASS') ?: '');
+define('DB_CHARSET', 'utf8mb4');
